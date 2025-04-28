@@ -13,19 +13,17 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 0px 40px;
     background-color: #111;
     
 }
 
-.logo h1 {
-    font-size: 24px;
-    font-weight: bold;
+
+.logo img {
+    height: 100px; /* Ajuste conforme o tamanho que você quiser */
+    width: 160px; /* Mantém a proporção da imagem */
 }
 
-.logo span {
-    color: red;
-}
 
 nav ul {
     display: flex;
