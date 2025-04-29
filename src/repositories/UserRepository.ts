@@ -10,11 +10,11 @@ export class UserRepository {
   }
 
   async findAllUsers() {
-    return await this.userRepository.find({ relations: ["tasks"] });
+    return await this.userRepository.find({});
   }
 
   async findUserById(id: number) {
-    return await this.userRepository.findOne({ where: { id }, relations: ["tasks"] });
+    return await this.userRepository.findOne({ where: { id }});
   }
 
   async findUserByEmail(email: string) {
