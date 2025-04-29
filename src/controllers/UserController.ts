@@ -31,26 +31,38 @@ export class UserController {
   static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
-
+      console.log("Tentando login para:", email);
+  
       const user = await repo.findUserByEmail(email);
       if (!user) {
+        console.log("Usuário não encontrado");
         res.status(404).json({ message: "Usuário não encontrado." });
         return;
       }
-
+  
       const isValid = await bcrypt.compare(password, user.password);
       if (!isValid) {
+        console.log("Senha inválida");
         res.status(401).json({ message: "Senha inválida." });
         return;
       }
-
-      const token = generateToken({ id: user.id, email: user.email});
-
+  
+      const token = generateToken({ id: user.id, email: user.email });
+      console.log("Login bem-sucedido:", token);
+  
       res.json({ message: "Login autorizado", token });
-    } catch (error) {
-      res.status(500).json({ message: "Erro ao fazer login", details: error });
-    }
-  }
+    } catch (error: any) {
+      console.error("Erro no login:", error);
+      res.status(500).json({
+        message: "Erro ao fazer login",
+        details: {
+          message: error?.message || "Erro desconhecido",
+          stack: error?.stack || null,
+          raw: error,
+        },
+      });
+  }}
+  
 
   
   static async getAll(req: Request, res: Response) {

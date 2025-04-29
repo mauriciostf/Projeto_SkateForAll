@@ -10,11 +10,11 @@ export class UserRepository {
   }
 
   async findAllUsers() {
-    return await this.userRepository.find({});
+    return await this.userRepository.find();
   }
 
   async findUserById(id: number) {
-    return await this.userRepository.findOne({ where: { id }});
+    return await this.userRepository.findOne({ where: { id } });
   }
 
   async findUserByEmail(email: string) {
@@ -32,6 +32,7 @@ export class UserRepository {
   async deleteUser(id: number) {
     const user = await this.findUserById(id);
     if (!user) return null;
+
     return await this.userRepository.remove(user);
   }
 }
