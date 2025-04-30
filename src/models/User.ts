@@ -28,18 +28,22 @@ export class User {
     @Column({ length: 100 })
     address: string;
 
+    @Column({length: 50})
+    state: string;
+
     @OneToMany(() => Donation, donation => donation.donor)
     donationsMade!: Donation[];
 
     @OneToMany(() => Donation, donation => donation.recipient)
     donationsReceived!: Donation[];
 
-    constructor(name: string, email: string, password: string, phone: string, address: string) {
+    constructor(name: string, email: string, password: string, phone: string, address: string, state: string) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
+        this.state = state;
         }
 
     @BeforeInsert()

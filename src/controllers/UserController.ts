@@ -10,7 +10,7 @@ export class UserController {
 
   static async register(req: Request, res: Response) {
     try {
-      const { name, email, password, phone, address } = req.body;
+      const { name, email, password, phone, address, state} = req.body;
 
       const existing = await repo.findUserByEmail(email);
       if (existing) {
@@ -18,7 +18,7 @@ export class UserController {
         return;
       }
 
-      const user = await repo.createUser(name, email, password, phone, address);
+      const user = await repo.createUser(name, email, password, phone, address, state);
       res.status(201).json(user);
       return;
     } catch (error) {
