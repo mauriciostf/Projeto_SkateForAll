@@ -2,7 +2,7 @@ import {
     Entity, PrimaryGeneratedColumn, Column,
     ManyToOne
 } from "typeorm";
-import { User } from "../models/User"; // ajuste o caminho conforme necessário
+import { User } from "../models/User";
 
 @Entity()
 export class Donation {
@@ -10,31 +10,31 @@ export class Donation {
     id!: number;
 
     @ManyToOne(() => User, user => user.donationsMade, { eager: true })
-    donor: User;
+    donor!: User;
 
     @ManyToOne(() => User, user => user.donationsReceived, { eager: true })
-    recipient: User;
+    recipient!: User;
 
     @Column()
     item: string;
 
-    @Column({ nullable: true })
-    description?: string;
+    @Column({ nullable: false })
+    description: string;
+
+    @Column({type: "enum", enum: ['novo', 'semi-novo', 'usado'], default: 'novo' })
+    itemStatus?: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt!: Date;
 
-    @Column({ nullable: true })
+    @Column({ nullable: false })
     imageUrl?: string;
 
 
-    constructor(donor: User, recipient: User, item: string, description?: string) {
-        this.donor = donor;
-        this.recipient = recipient;
+    constructor(item: string, description: string, itemStatus?: string) {
         this.item = item;
         this.description = description;
+        if (itemStatus) this.itemStatus = itemStatus
     }
-
-
 
 }

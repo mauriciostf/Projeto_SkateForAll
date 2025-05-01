@@ -5,14 +5,9 @@ import { User } from "../models/User";
 export class DonationRepository {
   private donationRepository = AppDataSource.getRepository(Donation);
 
-  async createDonation(donorId: number, recipientId: number, item: string, description: string, imageUrl?: string) {
-    const donor = await AppDataSource.getRepository(User).findOneBy({ id: donorId });
-    const recipient = await AppDataSource.getRepository(User).findOneBy({ id: recipientId });
+  async createDonation(item: string, description: string, itemStatus: string) {
 
-    if (!donor || !recipient) return null;
-
-    const donation = new Donation(donor, recipient, item, description);
-    donation.imageUrl = imageUrl;
+    const donation = new Donation(item, description, itemStatus);
 
     return await this.donationRepository.save(donation);
   }

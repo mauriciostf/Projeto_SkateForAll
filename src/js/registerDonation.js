@@ -1,17 +1,19 @@
-const form = document.getElementById("login-form");
+const form = document.getElementById("donation-form");
 const erroEl = document.getElementById("erro-login");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const item = document.getElementById("item-name").value;
+  const description = document.getElementById("description").value;
+  const itemStatus = document.getElementById("itemStatus").value;
+
 
   try {
-    const res = await fetch("http://localhost:3000/api/login", {
+    const res = await fetch("http://localhost:3000/api/donations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ item, description, itemStatus}),
     });
 
     const text = await res.text(); 

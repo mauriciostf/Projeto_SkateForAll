@@ -5,22 +5,14 @@ import { User } from "../models/User";
 
 export class DonationController {
   static async create(req: Request, res: Response) {
-    const { recipientId, item, description } = req.body;
+    const {item, description, itemStatus } = req.body;
     const donorId = req.user.id;
     const imageFile = req.file;
   
     try {
       const userRepo = AppDataSource.getRepository(User);
       const donor = await userRepo.findOneBy({ id: donorId });
-      const recipient = await userRepo.findOneBy({ id: recipientId });
-  
-      if (!donor || !recipient)
-        return res.status(404).json({ message: "Usuário(s) não encontrado(s)" });
-  
-      const imageUrl = imageFile ? `/uploads/${imageFile.filename}` : undefined;
-  
-      const donation = new Donation(donor, recipient, item, description);
-      donation.imageUrl = imageUrl;
+      const donation = new Donation(item, description, itemStatus);
   
       const savedDonation = await AppDataSource.getRepository(Donation).save(donation);
       return res.status(201).json(savedDonation);

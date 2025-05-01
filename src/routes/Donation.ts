@@ -11,7 +11,6 @@ const router = Router();
 
 router.post(
     "/donations",
-    upload.single("image"),
     DonationController.create.bind
   );
 router.get('/donations', DonationController.findAll.bind);
