@@ -28,13 +28,15 @@ export class Donation {
     createdAt!: Date;
 
     @Column({ nullable: false })
-    imageUrl?: string;
+    image?: string;
 
 
-    constructor(item: string, description: string, itemStatus?: string) {
+    constructor(item: string, description: string, itemStatus?: string, image?: string) {
         this.item = item;
         this.description = description;
-        if (itemStatus) this.itemStatus = itemStatus
+        if (itemStatus) this.itemStatus = itemStatus;
+        this.image = image;
+
     }
 
 }

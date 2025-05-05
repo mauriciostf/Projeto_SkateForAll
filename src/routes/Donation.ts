@@ -1,16 +1,19 @@
 import { Router } from "express";
 import { DonationController } from "../controllers/DonationController";
 import { AuthMiddleware } from "../middlewares/AuthMiddlewares";
-import { upload } from "../config/upload";
+import multer from "multer";
+import uploadConfig from "../config/uploadConfig";
 
 const middleware = new AuthMiddleware()
 
 
 const router = Router();
+const upload = multer(uploadConfig)
 
 
 router.post(
     "/donations",
+    upload.single("image"),
     DonationController.create.bind
   );
 router.get('/donations', DonationController.findAll.bind);

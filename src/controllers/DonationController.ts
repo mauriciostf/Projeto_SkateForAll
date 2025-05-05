@@ -2,24 +2,21 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../dataSource";
 import { Donation } from "../models/Donation";
 import { User } from "../models/User";
+import { DonationRepository } from "../repositories/DonationsRepository";
 
 export class DonationController {
   static async create(req: Request, res: Response) {
-    const {item, description, itemStatus } = req.body;
-    const donorId = req.user.id;
-    const imageFile = req.file;
+    const { title, description, itemStatus} = req.body;
+    const image = req.file?.filename;
   
     try {
-      const userRepo = AppDataSource.getRepository(User);
-      const donor = await userRepo.findOneBy({ id: donorId });
-      const donation = new Donation(item, description, itemStatus);
-  
+      const donation = new Donation(title, description, itemStatus, image);
       const savedDonation = await AppDataSource.getRepository(Donation).save(donation);
       return res.status(201).json(savedDonation);
-    } catch (err) {
-      return res.status(500).json({ message: "Erro ao registrar doação", error: err });
+    } catch (error) {
+      return res.status(500).json({ message: "Erro ao cadastrar doação", error });
     }
-  }
+  };
 
   static async findAll(req: Request, res: Response) {
     try {

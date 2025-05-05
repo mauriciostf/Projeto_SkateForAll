@@ -5,9 +5,9 @@ import { User } from "../models/User";
 export class DonationRepository {
   private donationRepository = AppDataSource.getRepository(Donation);
 
-  async createDonation(item: string, description: string, itemStatus: string) {
+  async createDonation(item: string, description: string, itemStatus: string, image: string) {
 
-    const donation = new Donation(item, description, itemStatus);
+    const donation = new Donation(item, description, itemStatus, image);
 
     return await this.donationRepository.save(donation);
   }
@@ -15,7 +15,7 @@ export class DonationRepository {
     return await this.donationRepository.find({
       relations: ["donor", "recipient"]
     });
-  }
+  };
 
   async findDonationById(id: number) {
     return await this.donationRepository.findOne({
