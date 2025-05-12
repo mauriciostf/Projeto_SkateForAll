@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("repetir-senha").value;
       const address = document.getElementById("address").value;
-      const state = document.getElementById("state").value;
+      const state = document.getElementById("itemStatus").value;
   
       const erroMsg = document.getElementById("senha-erro");
   

@@ -26,7 +26,7 @@ export class Donation {
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt!: Date;
-
+    
     @Column({ nullable: false })
     image?: string;
 
