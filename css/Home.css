@@ -20,8 +20,8 @@ header {
 
 
 .logo img {
-    height: 100px; /* Ajuste conforme o tamanho que você quiser */
-    width: 160px; /* Mantém a proporção da imagem */
+    height: 100px;
+    width: 160px; 
 }
 
 
@@ -84,7 +84,6 @@ nav a:hover {
     background-color: darkred;
 }
 
-/* PRODUTOS */
 .produtos {
     display: flex;
     justify-content: center;
