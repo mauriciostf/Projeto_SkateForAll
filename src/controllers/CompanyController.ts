@@ -10,7 +10,7 @@ export class CompanyController {
 
   static async register(req: Request, res: Response) {
     try {
-      const { name, CNPJ, email, phone, BusinessAddress, password,} = req.body;
+      const { name, CNPJ, email, password, phone, BusinessAddress} = req.body;
 
       const existing = await repo.findCompanyByEmail(email);
       if (existing) {
@@ -18,7 +18,7 @@ export class CompanyController {
         return;
       }
 
-      const company = await repo.createCompany(name, CNPJ, email, phone, BusinessAddress, password);
+      const company = await repo.createCompany(name, CNPJ, email, password, phone, BusinessAddress);
       res.status(201).json(company);
       return;
     } catch (error) {

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const CNPJ = document.getElementById("CNPJ").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
-      const BusinessAdress = document.getElementById("BusinessAdress").value;
+      const BusinessAddress = document.getElementById("BusinessAdress").value;
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
   
@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ name, CNPJ, email, phone, BusinessAdress, password})
+          body: JSON.stringify({ name, CNPJ, email, password,phone, BusinessAddress})
         });
   
         if (response.ok) {
           alert("Empresa cadastrada com sucesso!");
-          window.location.href = "../html/loginScreen.html";
+          window.location.href = "../html/loginCompany.html";
         } else {
           const data = await response.json();
           alert("Erro: " + data.message);

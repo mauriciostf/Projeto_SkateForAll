@@ -8,7 +8,7 @@ const middleware = new AuthMiddleware()
 const router = Router();
 
 router.post('/registerc', CompanyController.register);
-router.post('/login', CompanyController.login);
+router.post('/loginc', CompanyController.login);
 router.get('/companys/', middleware.authenticateToken, CompanyController.getAll);
 
 export default router;
