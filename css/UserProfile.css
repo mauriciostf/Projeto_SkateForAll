@@ -10,18 +10,18 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  /* Header igual ao da homeScreen */
   header {
     background-color: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
+    height: 100px;
   }
   
   .logo img {
-    height: 80px;
-    width: auto;
+    height: 100px;
+    width: 100px;
   }
   
   nav ul {
@@ -44,7 +44,7 @@
   }
   
   #noLogin {
-    display: none; /* pode ser trocado com JavaScript */
+    display: none;
   }
   
   /* Container do perfil */
